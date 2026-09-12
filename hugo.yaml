@@ -3,7 +3,7 @@
 # 结构：/ 是数据驱动落地页，content/ 的一级目录即博客栏目
 
 title: &siteTitle zhangyi1995 # CHANGE ME: 想显示的站点名，一处定义覆盖所有语言
-baseURL: https://personalpage.pages.dev/
+baseURL: https://personalpage-dvh.pages.dev/
 defaultContentLanguage: zh
 disableLanguages: [fr]
 enableGitInfo: true

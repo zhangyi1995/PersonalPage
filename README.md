@@ -44,7 +44,7 @@ hugo new content blog/my-first-post.md
 | --- | --- | --- |
 | `zhangyi1995` | `hugo.yaml` 的 `title`、各语言首页 `title`、`params.copyright.authors`、`data/home/*.yaml` 的 `eyebrow` | 站点名与署名，用 GitHub 用户名占位 |
 | `you@example.com` | `content/about/index.md`、`content/about/index.en.md` | 公开邮箱，按需填写 |
-| `https://personalpage.pages.dev/` | `hugo.yaml` 的 `baseURL` | 绑定自定义域名后需同步修改，或改用仓库变量 `CLOUDFLARE_SITE_URL` 覆盖 |
+| `https://personalpage-dvh.pages.dev/` | `hugo.yaml` 的 `baseURL` | `pages.dev` 子域全局唯一，`personalpage` 已被占用故加 `-dvh` 后缀；绑定自定义域名后同步修改 |
 
 ## 部署
 
@@ -69,6 +69,6 @@ Cloudflare 项目的构建设置：
 - Secrets：`CLOUDFLARE_ACCOUNT_ID`、`CLOUDFLARE_API_TOKEN`（权限 `Account · Cloudflare Pages · Edit`）
 - Repository variable：`CLOUDFLARE_PROJECT_NAME=personalpage`（必须小写，不用则退回仓库名 `PersonalPage`）
 - Repository variable：`CLOUDFLARE_PAGES_ENABLED=true`（总开关，不设则工作流不运行）
-- Repository variable：`CLOUDFLARE_SITE_URL=https://personalpage.pages.dev/`（绑定自定义域名后用它覆盖）
+- Repository variable：`CLOUDFLARE_SITE_URL=https://personalpage-dvh.pages.dev/`（绑定自定义域名后用它覆盖）
 
 两条通道同时开启会导致同一次推送重复部署，切换时记得关掉另一条。
