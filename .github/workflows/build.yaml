@@ -1,0 +1,67 @@
+name: Build
+
+# 发布质量门禁：只构建，不部署。线上发布由 Cloudflare 的 Git 集成完成。
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: build-${{ github.ref }}
+  cancel-in-progress: true
+
+env:
+  HUGO_VERSION: 0.166.0
+  GOWORK: off
+  HUGO_MODULE_WORKSPACE: off
+  HUGO_CACHEDIR: ${{ github.workspace }}/.hugo_cache
+
+jobs:
+  build:
+    name: Strict build
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out source
+        uses: actions/checkout@v7
+        with:
+          fetch-depth: 0
+
+      - name: Set up Go
+        uses: actions/setup-go@v7
+        with:
+          go-version-file: go.mod
+          cache-dependency-path: go.sum
+
+      # OINK 用 toCSS 编译 SCSS，必须 Extended 版；非 Extended 只会渲染出无样式页面。
+      - name: Install Hugo Extended
+        run: |
+          curl --fail --location --silent --show-error \
+            --output "${RUNNER_TEMP}/hugo.deb" \
+            "https://github.com/gohugoio/hugo/releases/download/v${HUGO_VERSION}/hugo_extended_${HUGO_VERSION}_linux-amd64.deb"
+          sudo dpkg -i "${RUNNER_TEMP}/hugo.deb"
+
+      - name: Download OINK
+        run: go mod download github.com/pgsty/oink
+
+      # 任何警告都视为失败：宁可在 CI 里拦下，也不要发出半成品页面。
+      - name: Build
+        run: |
+          hugo --cleanDestinationDir --gc --minify --environment production \
+            --printPathWarnings --panicOnWarning
+
+      # 产物断言：中英首页、Agent 输出与站点基础文件缺一不可。
+      - name: Verify artifacts
+        run: |
+          set -euo pipefail
+          test -f public/index.html
+          test -f public/en/index.html
+          test -f public/llms.txt
+          test -f public/sitemap.xml
+          test -f public/robots.txt
+          test -f public/blog/why-oink/index.md
+          test -f public/en/blog/why-oink/index.md
+          echo "所有产物断言通过"

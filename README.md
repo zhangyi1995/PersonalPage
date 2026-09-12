@@ -48,9 +48,27 @@ hugo new content blog/my-first-post.md
 
 ## 部署
 
-推送到 `main` 后由 `.github/workflows/cloudflare-pages.yaml` 构建并直传 Cloudflare Pages。需要在仓库中配置：
+发布由 **Cloudflare Pages 的 Git 集成**完成：Cloudflare 监听 `main`，自己构建并发布。仓库里的 `.github/workflows/build.yaml` 只做严格构建检查，不参与发布。
 
-- Secrets：`CLOUDFLARE_ACCOUNT_ID`、`CLOUDFLARE_API_TOKEN`（权限 Pages:Edit）
-- Repository variable：`CLOUDFLARE_PROJECT_NAME=personalpage`（Cloudflare 项目名必须小写；不设置会退回仓库名 `PersonalPage`，可能被拒）
-- Repository variable：`CLOUDFLARE_PAGES_ENABLED=true`（开启自动部署的开关）
-- Repository variable：`CLOUDFLARE_SITE_URL=https://personalpage.pages.dev/`（可选，绑定自定义域名后用这个覆盖）
+Cloudflare 项目的构建设置：
+
+| 项 | 值 |
+| --- | --- |
+| Build command | `hugo --gc --minify --environment production --cleanDestinationDir` |
+| Build output directory | `public` |
+| Root directory | 留空 |
+| 环境变量 | `HUGO_VERSION=0.166.0` |
+| 环境变量 | `GO_VERSION=1.27.1` |
+
+两个版本变量不能省：构建镜像的默认值是 Hugo 0.147.7 与 Go 1.24.3，都低于本站要求；而 `HUGO_VERSION` 必须让 Cloudflare 装上 Extended 版，否则 OINK 的 SCSS 编译不出来，页面会是无样式状态且构建仍报成功。
+
+### 备用发布通道：Direct Upload
+
+`.github/workflows/cloudflare-pages.yaml` 是备用方案：在 GitHub Actions 里用固定版本的工具链构建后直传 Cloudflare，适合 Cloudflare 侧构建不可用时切换。它默认不触发，启用方式是在仓库里配置：
+
+- Secrets：`CLOUDFLARE_ACCOUNT_ID`、`CLOUDFLARE_API_TOKEN`（权限 `Account · Cloudflare Pages · Edit`）
+- Repository variable：`CLOUDFLARE_PROJECT_NAME=personalpage`（必须小写，不用则退回仓库名 `PersonalPage`）
+- Repository variable：`CLOUDFLARE_PAGES_ENABLED=true`（总开关，不设则工作流不运行）
+- Repository variable：`CLOUDFLARE_SITE_URL=https://personalpage.pages.dev/`（绑定自定义域名后用它覆盖）
+
+两条通道同时开启会导致同一次推送重复部署，切换时记得关掉另一条。
