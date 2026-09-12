@@ -19,6 +19,8 @@
 | `content/projects/` | 项目与作品页 |
 | `data/home/zh.yaml`、`data/home/en.yaml` | 首页分区数据，两种语言结构保持一致 |
 | `archetypes/default.md` | `hugo new content blog/<slug>.md` 的模板 |
+| `archetypes/chapter-note.md` | 读书笔记章节的模板：`hugo new content blog/<slug>.md --kind chapter-note` |
+| `docs/reading-protocol.md` | 读书笔记的写作协议，取自《如何阅读一本书》，写笔记前先读 |
 | `tools/env.sh` | 项目内工具链环境，用 `source tools/env.sh` 激活 |
 | `bin/build.sh` | 统一构建入口：校验 Hugo 版本，不匹配就下载 Extended 二进制 |
 | `docs/sessions/` | 会话与决策的原始记录，按 `YYYY-MM-DD-主题.md` 命名 |
@@ -41,6 +43,7 @@
 - 系列页的阅读顺序只认 `series_weight`；文件名前缀管的是文件系统的肉眼顺序，两者要保持一致。
 - 日期一律写当天或更早：Hugo 默认不构建未来日期的内容，写明天等于这篇文章不存在。
 - 「我读《人月神话》」系列为**中文单语，英文首页有意不设入口**。主题会为首页卡片链接强制补语言前缀，英文侧指向中文系列页必然是死链；补英文版时再对称加上。
+- 读书笔记一律按 `docs/reading-protocol.md` 的四节结构与短引规则写，不要跳过节一直接下判断。
 
 ## 常用命令
 
