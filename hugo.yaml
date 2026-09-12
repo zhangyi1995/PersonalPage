@@ -2,8 +2,8 @@
 # 主题：OINK v1.0.0（github.com/pgsty/oink）；构建：Hugo Extended >= 0.160.1 + Go 1.27
 # 结构：/ 是数据驱动落地页，content/ 的一级目录即博客栏目
 
-title: &siteTitle Site Name # CHANGE ME: 站点名，一处定义覆盖所有语言
-baseURL: https://example.pages.dev/ # CHANGE ME: 上线前改成真实域名
+title: &siteTitle zhangyi1995 # CHANGE ME: 想显示的站点名，一处定义覆盖所有语言
+baseURL: https://personalpage.pages.dev/
 defaultContentLanguage: zh
 disableLanguages: [fr]
 enableGitInfo: true
@@ -58,7 +58,7 @@ params:
 
   # -- 身份 ----------------------------------------------------------------
   copyright:
-    authors: Your Name # CHANGE ME
+    authors: zhangyi1995 # CHANGE ME
     from_year: 2026
   footer_center_info: ''
   # logo: icons/logo.svg
@@ -79,16 +79,16 @@ params:
     scroll_spy: true
     share: [x, telegram, linkedin, weibo, email, copy]
 
-  # -- 可选：仓库链接，用于「编辑此页」「查看历史」与 issue 入口 -----------
-  # github_repo: https://github.com/OWNER/REPO
-  # github_branch: main
+  # -- 仓库链接：用于「编辑此页」「查看历史」与 issue 入口 -------------------
+  github_repo: https://github.com/zhangyi1995/PersonalPage
+  github_branch: main
 
   # -- 可选：giscus 评论，整块填好再取消注释 -------------------------------
   # comments:
   #   enable: true
   #   type: giscus
   #   giscus:
-  #     repo: OWNER/REPO
+  #     repo: zhangyi1995/PersonalPage
   #     repoId: R_xxxxxxxxxx
   #     category: Announcements
   #     categoryId: DIC_xxxxxxxxxx

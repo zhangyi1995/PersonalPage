@@ -11,7 +11,7 @@ sections:
 
 hero:
   align: center
-  eyebrow: Your Name · 技术笔记
+  eyebrow: zhangyi1995 · 技术笔记
   title_lines:
     - words: [{ text: 写代码， }]
     - words: [{ text: 也写为什么。 }]
@@ -56,7 +56,7 @@ projects:
     - title: 本站源码
       desc: 这个站点本身：OINK + Hugo，中英双语，Cloudflare Pages 发布。
       icon: fa-solid fa-code-branch
-      url: https://github.com/OWNER/REPO
+      url: https://github.com/zhangyi1995/PersonalPage
     - title: OINK
       desc: 本站使用的 Hugo 文档框架，本地优先，不依赖 Node 与 CDN。
       icon: fa-solid fa-cube

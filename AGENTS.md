@@ -49,6 +49,8 @@ hugo --cleanDestinationDir --gc --minify --environment production \
 - 临时探索、试错过程与结论记在仓库内的文档里，不要只留在会话或聊天记录中。
 - 本文件只放稳定约定；一次性的判断写在对应文章里。
 
-## 待替换的占位值
+## 身份信息与占位值
 
-上线前必须替换：`Site Name`、`https://example.pages.dev/`、`Your Name`、`you@example.com`、`OWNER`、`OWNER/REPO`（含 `hugo.yaml` 中注释掉的 `params.github_repo`）。
+仓库：`https://github.com/zhangyi1995/PersonalPage`（已写入 `params.github_repo`、项目页与首页项目卡片）。
+
+仍为占位、需要本人确认后再改：站点名与署名 `zhangyi1995`（`hugo.yaml` 的 `title` 与 `params.copyright.authors`、各语言首页 `title`、`data/home/*.yaml` 的 `eyebrow`）、公开邮箱 `you@example.com`（`content/about/`）、`baseURL`（绑定自定义域名后同步）。

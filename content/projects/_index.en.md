@@ -10,6 +10,6 @@ menus:
 
 ## Active {#active}
 
-- [Site source](https://github.com/OWNER/REPO): this site itself, built with OINK + Hugo, bilingual, deployed on Cloudflare Pages.
+- [Site source](https://github.com/zhangyi1995/PersonalPage): this site itself, built with OINK + Hugo, bilingual, deployed on Cloudflare Pages.
 - [OINK](https://oink.pgsty.com/): the Hugo documentation framework behind this site, local-first, one Markdown source for readers and agents.
 {.cards}

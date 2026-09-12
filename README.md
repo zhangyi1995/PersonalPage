@@ -34,20 +34,23 @@ hugo new content blog/my-first-post.md
 
 中文文件名不带语言后缀，英文对页用 `.en.md`，两者标题锚点必须一致。约定详见 [AGENTS.md](AGENTS.md)。
 
-## 上线前的替换清单
+## 身份信息
 
-| 占位值 | 位置 |
-| --- | --- |
-| `Site Name` | `hugo.yaml` 的 `title`（YAML 锚点，一处改动覆盖所有语言） |
-| `https://example.pages.dev/` | `hugo.yaml` 的 `baseURL` |
-| `Your Name`、`you@example.com` | `content/about/`、`hugo.yaml` 的 `params.copyright` |
-| `OWNER`、`OWNER/REPO` | `content/about/`、`content/projects/`、`data/home/*.yaml`，以及 `hugo.yaml` 里注释掉的 `params.github_repo` |
+仓库地址 `https://github.com/zhangyi1995/PersonalPage` 已写入站点：仓库链接、编辑此页、项目页与首页项目卡片都已指向它。
+
+仍待替换的占位值：
+
+| 占位值 | 位置 | 说明 |
+| --- | --- | --- |
+| `zhangyi1995` | `hugo.yaml` 的 `title`、各语言首页 `title`、`params.copyright.authors`、`data/home/*.yaml` 的 `eyebrow` | 站点名与署名，用 GitHub 用户名占位 |
+| `you@example.com` | `content/about/index.md`、`content/about/index.en.md` | 公开邮箱，按需填写 |
+| `https://personalpage.pages.dev/` | `hugo.yaml` 的 `baseURL` | 绑定自定义域名后需同步修改，或改用仓库变量 `CLOUDFLARE_SITE_URL` 覆盖 |
 
 ## 部署
 
 推送到 `main` 后由 `.github/workflows/cloudflare-pages.yaml` 构建并直传 Cloudflare Pages。需要在仓库中配置：
 
 - Secrets：`CLOUDFLARE_ACCOUNT_ID`、`CLOUDFLARE_API_TOKEN`（权限 Pages:Edit）
-- Repository variable：`CLOUDFLARE_PROJECT_NAME`（可选，缺省用仓库名）
+- Repository variable：`CLOUDFLARE_PROJECT_NAME=personalpage`（Cloudflare 项目名必须小写；不设置会退回仓库名 `PersonalPage`，可能被拒）
 - Repository variable：`CLOUDFLARE_PAGES_ENABLED=true`（开启自动部署的开关）
-- Repository variable：`CLOUDFLARE_SITE_URL`（可选，缺省按 `<项目名>.pages.dev` 生成）
+- Repository variable：`CLOUDFLARE_SITE_URL=https://personalpage.pages.dev/`（可选，绑定自定义域名后用这个覆盖）

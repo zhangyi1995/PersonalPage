@@ -7,7 +7,7 @@ menus:
     weight: 40
 ---
 
-我是 **Your Name**，这里放我的技术笔记、项目记录与决策备忘。
+我是 **zhangyi1995**，这里放我的技术笔记、项目记录与决策备忘。
 
 ## 我在做什么 {#work}
 
@@ -15,7 +15,7 @@ menus:
 
 ## 怎么找到我 {#contact}
 
-- GitHub：<https://github.com/OWNER>
+- GitHub：<https://github.com/zhangyi1995>
 - 邮箱：`you@example.com`
 
 > [!TIP]

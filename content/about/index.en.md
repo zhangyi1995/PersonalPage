@@ -7,7 +7,7 @@ menus:
     weight: 40
 ---
 
-I am **Your Name**. This site holds my technical notes, project logs, and decision records.
+I am **zhangyi1995**. This site holds my technical notes, project logs, and decision records.
 
 ## What I work on {#work}
 
@@ -15,7 +15,7 @@ One paragraph on your direction: the fields you care about, the projects you are
 
 ## How to reach me {#contact}
 
-- GitHub: <https://github.com/OWNER>
+- GitHub: <https://github.com/zhangyi1995>
 - Email: `you@example.com`
 
 > [!TIP]

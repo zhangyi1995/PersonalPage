@@ -11,7 +11,7 @@ sections:
 
 hero:
   align: center
-  eyebrow: Your Name · Notes
+  eyebrow: zhangyi1995 · Notes
   title_lines:
     - words: [{ text: Write code, }]
     - words: [{ text: and write why. }]
@@ -56,7 +56,7 @@ projects:
     - title: Site source
       desc: "This site itself: OINK + Hugo, bilingual, deployed on Cloudflare Pages."
       icon: fa-solid fa-code-branch
-      url: https://github.com/OWNER/REPO
+      url: https://github.com/zhangyi1995/PersonalPage
     - title: OINK
       desc: The local-first Hugo documentation framework behind this site, with no Node or CDN dependency.
       icon: fa-solid fa-cube
