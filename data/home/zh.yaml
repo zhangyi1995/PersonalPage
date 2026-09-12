@@ -29,6 +29,10 @@ featured:
       desc: 选型、取舍与放弃的方案：静态站、Markdown 单一内容源、人和 Agent 共用一份材料。
       icon: fa-solid fa-compass-drafting
       url: blog/why-oink/
+    - title: 我读《人月神话》
+      desc: 逐章笔记：为什么加人不能加快进度。
+      icon: fa-solid fa-book-open
+      url: series/mythical-man-month/
 
 columns:
   eyebrow: 内容

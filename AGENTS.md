@@ -21,6 +21,7 @@
 | `archetypes/default.md` | `hugo new content blog/<slug>.md` 的模板 |
 | `tools/env.sh` | 项目内工具链环境，用 `source tools/env.sh` 激活 |
 | `bin/build.sh` | 统一构建入口：校验 Hugo 版本，不匹配就下载 Extended 二进制 |
+| `docs/sessions/` | 会话与决策的原始记录，按 `YYYY-MM-DD-主题.md` 命名 |
 
 ## 硬性规则
 
@@ -31,6 +32,15 @@
 - 首页分区类型只能取 OINK 注册表里的名字；写错会在构建期报 `unknown section type`。
 - 不要删除或改写 `hugo.yaml` 中的三项 Goldmark 设置、`outputs`、`module.imports` 与 `hugoVersion`：OINK 的原生组件、Agent 输出与版本锁定都依赖它们。
 - 不要提交 `tools/`、`public/`、`resources/`、`.hugo_cache/`：前两者是本地工具链，后两者是构建产物。
+
+## 系列与读书笔记
+
+- 系列标识符用 ASCII，中文显示名写在术语页的 `title` 里：`series: [mythical-man-month]` + `content/series/mythical-man-month/_index.md` 的 `title`。中文标识符会产出百分号编码 URL，不要用。
+- 文件名带系列前缀并与权重对齐：`mythical-man-month-01-tar-pit.md` 对应 `series_weight: 10`。步长 10，为跨章插篇预留（插在第 3、5 章之间就写 35）。
+- 读书笔记的分类法写法固定为 `categories: [读书笔记]` + `tags: [人月神话]`。术语按字面匹配，`读书笔记` 必须每次写全，写成"读书"会另开一个类目页。
+- 系列页的阅读顺序只认 `series_weight`；文件名前缀管的是文件系统的肉眼顺序，两者要保持一致。
+- 日期一律写当天或更早：Hugo 默认不构建未来日期的内容，写明天等于这篇文章不存在。
+- 「我读《人月神话》」系列为**中文单语，英文首页有意不设入口**。主题会为首页卡片链接强制补语言前缀，英文侧指向中文系列页必然是死链；补英文版时再对称加上。
 
 ## 常用命令
 
@@ -46,6 +56,7 @@ STRICT=1 bash bin/build.sh
 ## 工作记忆
 
 - 每次涉及结构、选型或取舍的改动，先在 `content/blog/` 写一篇说明 Why 的文章，再改代码或配置。
+- 会话与盘问的原始记录写在 `docs/sessions/`，文件名用 `YYYY-MM-DD-主题.md`；本文档只留稳定约定与索引，细节不往这里堆。
 - 临时探索、试错过程与结论记在仓库内的文档里，不要只留在会话或聊天记录中。
 - 本文件只放稳定约定；一次性的判断写在对应文章里。
 
