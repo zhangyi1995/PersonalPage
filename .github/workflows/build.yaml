@@ -15,10 +15,10 @@ concurrency:
   cancel-in-progress: true
 
 env:
-  HUGO_VERSION: 0.166.0
   GOWORK: off
   HUGO_MODULE_WORKSPACE: off
   HUGO_CACHEDIR: ${{ github.workspace }}/.hugo_cache
+  STRICT: '1'
 
 jobs:
   build:
@@ -36,22 +36,13 @@ jobs:
           go-version-file: go.mod
           cache-dependency-path: go.sum
 
-      # OINK 用 toCSS 编译 SCSS，必须 Extended 版；非 Extended 只会渲染出无样式页面。
-      - name: Install Hugo Extended
-        run: |
-          curl --fail --location --silent --show-error \
-            --output "${RUNNER_TEMP}/hugo.deb" \
-            "https://github.com/gohugoio/hugo/releases/download/v${HUGO_VERSION}/hugo_extended_${HUGO_VERSION}_linux-amd64.deb"
-          sudo dpkg -i "${RUNNER_TEMP}/hugo.deb"
-
       - name: Download OINK
         run: go mod download github.com/pgsty/oink
 
-      # 任何警告都视为失败：宁可在 CI 里拦下，也不要发出半成品页面。
+      # 与 Cloudflare 走同一个脚本，Hugo 版本只在 bin/build.sh 里定义一次。
+      # STRICT=1 让任何警告都视为失败：宁可在 CI 里拦下，也不发半成品页面。
       - name: Build
-        run: |
-          hugo --cleanDestinationDir --gc --minify --environment production \
-            --printPathWarnings --panicOnWarning
+        run: bash bin/build.sh
 
       # 产物断言：中英首页、Agent 输出与站点基础文件缺一不可。
       - name: Verify artifacts

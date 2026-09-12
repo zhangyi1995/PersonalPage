@@ -20,6 +20,7 @@
 | `data/home/zh.yaml`、`data/home/en.yaml` | 首页分区数据，两种语言结构保持一致 |
 | `archetypes/default.md` | `hugo new content blog/<slug>.md` 的模板 |
 | `tools/env.sh` | 项目内工具链环境，用 `source tools/env.sh` 激活 |
+| `bin/build.sh` | 统一构建入口：校验 Hugo 版本，不匹配就下载 Extended 二进制 |
 
 ## 硬性规则
 
@@ -38,9 +39,8 @@ source tools/env.sh          # 激活项目内 hugo 与 go
 hugo server                  # 本地预览，毫秒级热重载
 hugo new content blog/<slug>.md
 
-# 发布门禁：零警告退出，CI 跑同一条命令
-hugo --cleanDestinationDir --gc --minify --environment production \
-  --printPathWarnings --panicOnWarning
+# 发布门禁：零警告退出。CI 与 Cloudflare 走同一个脚本，Hugo 版本只在脚本里定义
+STRICT=1 bash bin/build.sh
 ```
 
 ## 工作记忆

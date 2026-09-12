@@ -20,11 +20,12 @@ hugo server
 ## 发布前自检
 
 ```bash
-hugo --cleanDestinationDir --gc --minify --environment production \
-  --printPathWarnings --panicOnWarning
+STRICT=1 bash bin/build.sh
 ```
 
-任何警告都会中断构建，这是发布门禁；CI 跑的是同一条命令。
+`STRICT=1` 让任何警告都中断构建，这是发布门禁；CI 跑的是同一条命令。不带 `STRICT` 就是普通构建。
+
+`bin/build.sh` 自己保证 Hugo 版本：先看 PATH 里现有的 Hugo 是否为 `0.166.0+extended`，不是就下载官方 Extended 二进制。版本只在这一个脚本里定义。
 
 ## 写作
 
@@ -54,13 +55,13 @@ Cloudflare 项目的构建设置：
 
 | 项 | 值 |
 | --- | --- |
-| Build command | `hugo --gc --minify --environment production --cleanDestinationDir` |
+| Build command | `bash bin/build.sh` |
 | Build output directory | `public` |
 | Root directory | 留空 |
 | 环境变量 | `HUGO_VERSION=0.166.0` |
 | 环境变量 | `GO_VERSION=1.27.1` |
 
-两个版本变量不能省：构建镜像的默认值是 Hugo 0.147.7 与 Go 1.24.3，都低于本站要求；而 `HUGO_VERSION` 必须让 Cloudflare 装上 Extended 版，否则 OINK 的 SCSS 编译不出来，页面会是无样式状态且构建仍报成功。
+构建命令交给 `bin/build.sh` 是有原因的：Cloudflare 镜像预装的 Hugo 是 0.147.7，低于 OINK 要求的 0.160.1，实测会在解析主题的 `i18n/bg.yaml` 时报错；而环境变量 `HUGO_VERSION` 在这套构建系统上并不生效（同时设的 `GO_VERSION` 也被忽略，Go 是靠自身工具链下载机制救回来的）。脚本改为显式下载官方 Extended 二进制来固定版本，不依赖镜像内容。那两个环境变量可以留着不用，删掉也行。
 
 ### 备用发布通道：Direct Upload
 
