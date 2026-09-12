@@ -1,0 +1,133 @@
+# 个人主页 —— Hugo 站点配置
+# 主题：OINK v1.0.0（github.com/pgsty/oink）；构建：Hugo Extended >= 0.160.1 + Go 1.27
+# 结构：/ 是数据驱动落地页，content/ 的一级目录即博客栏目
+
+title: &siteTitle Site Name # CHANGE ME: 站点名，一处定义覆盖所有语言
+baseURL: https://example.pages.dev/ # CHANGE ME: 上线前改成真实域名
+defaultContentLanguage: zh
+disableLanguages: [fr]
+enableGitInfo: true
+enableRobotsTXT: true
+enableEmoji: true
+hasCJKLanguage: true
+timeZone: Asia/Shanghai
+summaryLength: 30
+
+taxonomies:
+  tag: tags
+  category: categories
+  author: authors
+  series: series
+
+pagination:
+  pagerSize: 12
+
+# OINK 的 Markdown 原生组件依赖这三个 Goldmark 设置，不能删除。
+markup:
+  goldmark:
+    renderer:
+      unsafe: true
+    parser:
+      attribute:
+        block: true
+      wrapStandAloneImageWithinParagraph: false
+    extensions:
+      passthrough:
+        enable: true
+        delimiters:
+          block: [['\[', '\]'], ['$$', '$$']]
+          inline: [['\(', '\)']]
+  highlight:
+    noClasses: false
+  tableOfContents:
+    startLevel: 2
+    endLevel: 4
+
+# markdown 输出供「复制 Markdown」与 Agent 抓取；LLMS 生成 llms.txt；print 生成整章打印视图。
+outputs:
+  home: [HTML, RSS, markdown, LLMS]
+  page: [HTML, markdown]
+  section: [HTML, RSS, print, markdown]
+
+params:
+  # -- 阅读与检索 ----------------------------------------------------------
+  offline_search: true
+  offline_search_index: summary
+  offline_search_max_results: 12
+  page_width: wide
+
+  # -- 身份 ----------------------------------------------------------------
+  copyright:
+    authors: Your Name # CHANGE ME
+    from_year: 2026
+  footer_center_info: ''
+  # logo: icons/logo.svg
+
+  # -- 外壳与交互 ----------------------------------------------------------
+  ui:
+    typography: technical
+    dark_mode: true
+    section_index: cards
+    blog_index: cards
+    blog_index_columns: 3
+    sidebar_menu_foldable: true
+    sidebar_icon_policy: groups
+    backlinks: true
+    image_zoom: true
+    reading_time: true
+    keyboard_nav: true
+    scroll_spy: true
+    share: [x, telegram, linkedin, weibo, email, copy]
+
+  # -- 可选：仓库链接，用于「编辑此页」「查看历史」与 issue 入口 -----------
+  # github_repo: https://github.com/OWNER/REPO
+  # github_branch: main
+
+  # -- 可选：giscus 评论，整块填好再取消注释 -------------------------------
+  # comments:
+  #   enable: true
+  #   type: giscus
+  #   giscus:
+  #     repo: OWNER/REPO
+  #     repoId: R_xxxxxxxxxx
+  #     category: Announcements
+  #     categoryId: DIC_xxxxxxxxxx
+  #     mapping: pathname
+  #     inputPosition: bottom
+  #     theme: auto
+  #     loading: lazy
+
+# -- 可选：访问统计，仅生产构建生效 ----------------------------------------
+# services:
+#   googleAnalytics:
+#     id: G-XXXXXXXXXX
+
+languages:
+  zh:
+    label: 简体中文
+    locale: zh-CN
+    weight: 1
+    title: *siteTitle
+    hasCJKLanguage: true
+    params:
+      description: 技术笔记、项目记录与决策备忘。 # CHANGE ME
+  en:
+    label: English
+    locale: en-US
+    weight: 2
+    title: *siteTitle
+    params:
+      description: Notes, project logs, and decision records. # CHANGE ME
+  # 保留声明但不启用：Hugo 才会把 .fr.md 识别成译文而不是重复页面。
+  fr:
+    label: Français
+    locale: fr-FR
+    weight: 3
+    title: *siteTitle
+
+module:
+  imports:
+    - path: github.com/pgsty/oink
+  hugoVersion:
+    extended: true
+    min: 0.160.1

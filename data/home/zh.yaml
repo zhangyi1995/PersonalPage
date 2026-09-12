@@ -1,0 +1,70 @@
+# 首页分区：顺序即页面从上到下的顺序。分区类型见 OINK 的 Landing 文档。
+sections:
+  - hero
+  - type: cards
+    key: featured
+  - type: cards
+    key: columns
+  - type: cards
+    key: projects
+  - cta
+
+hero:
+  align: center
+  eyebrow: Your Name · 技术笔记
+  title_lines:
+    - words: [{ text: 写代码， }]
+    - words: [{ text: 也写为什么。 }]
+  lead: 这里放技术笔记、项目记录与决策备忘。用 Markdown 写作，人读网页，Agent 读同一份源。
+  actions:
+    - { label: 读博客, url: blog/, icon: fa-solid fa-pen-nib, style: primary }
+    - { label: 关于我, url: about/, icon: fa-solid fa-circle-user, style: ghost }
+
+featured:
+  eyebrow: 精选
+  title: 最近在写
+  columns: 3
+  items:
+    - title: 我为什么用 OINK 搭这个站
+      desc: 选型、取舍与放弃的方案：静态站、Markdown 单一内容源、人和 Agent 共用一份材料。
+      icon: fa-solid fa-compass-drafting
+      url: blog/why-oink/
+
+columns:
+  eyebrow: 内容
+  title: 从这里开始
+  columns: 3
+  items:
+    - title: 博客
+      desc: 技术文章、项目记录与决策备忘，按时间倒序。
+      icon: fa-solid fa-pen-nib
+      url: blog/
+    - title: 标签
+      desc: 用标签横跨目录找同一主题的文章。
+      icon: fa-solid fa-tags
+      url: tags/
+    - title: 关于
+      desc: 我是谁、在做什么、怎么联系我。
+      icon: fa-solid fa-circle-user
+      url: about/
+
+projects:
+  eyebrow: 项目
+  title: 在维护的东西
+  columns: 2
+  items:
+    - title: 本站源码
+      desc: 这个站点本身：OINK + Hugo，中英双语，Cloudflare Pages 发布。
+      icon: fa-solid fa-code-branch
+      url: https://github.com/OWNER/REPO
+    - title: OINK
+      desc: 本站使用的 Hugo 文档框架，本地优先，不依赖 Node 与 CDN。
+      icon: fa-solid fa-cube
+      url: https://oink.pgsty.com/zh/
+
+cta:
+  title: 想聊点什么？
+  text: 关于页里有邮箱与 GitHub，欢迎就文章里的任何问题找我。
+  label: 关于我
+  url: about/
+  style: primary

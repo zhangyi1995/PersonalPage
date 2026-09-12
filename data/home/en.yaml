@@ -1,0 +1,70 @@
+# Home page sections: order defines the top-to-bottom layout.
+sections:
+  - hero
+  - type: cards
+    key: featured
+  - type: cards
+    key: columns
+  - type: cards
+    key: projects
+  - cta
+
+hero:
+  align: center
+  eyebrow: Your Name · Notes
+  title_lines:
+    - words: [{ text: Write code, }]
+    - words: [{ text: and write why. }]
+  lead: "Technical notes, project logs, and decision records. Written in Markdown: readers get HTML, agents get the same source."
+  actions:
+    - { label: Read the blog, url: blog/, icon: fa-solid fa-pen-nib, style: primary }
+    - { label: About me, url: about/, icon: fa-solid fa-circle-user, style: ghost }
+
+featured:
+  eyebrow: Featured
+  title: Recently written
+  columns: 3
+  items:
+    - title: Why I built this site with OINK
+      desc: "The choice, the trade-offs, and the options I dropped: a static site with one Markdown source."
+      icon: fa-solid fa-compass-drafting
+      url: blog/why-oink/
+
+columns:
+  eyebrow: Content
+  title: Start here
+  columns: 3
+  items:
+    - title: Blog
+      desc: Notes, project logs, and decision records, newest first.
+      icon: fa-solid fa-pen-nib
+      url: blog/
+    - title: Tags
+      desc: Follow a topic across every folder.
+      icon: fa-solid fa-tags
+      url: tags/
+    - title: About
+      desc: Who I am, what I work on, how to reach me.
+      icon: fa-solid fa-circle-user
+      url: about/
+
+projects:
+  eyebrow: Projects
+  title: What I maintain
+  columns: 2
+  items:
+    - title: Site source
+      desc: "This site itself: OINK + Hugo, bilingual, deployed on Cloudflare Pages."
+      icon: fa-solid fa-code-branch
+      url: https://github.com/OWNER/REPO
+    - title: OINK
+      desc: The local-first Hugo documentation framework behind this site, with no Node or CDN dependency.
+      icon: fa-solid fa-cube
+      url: https://oink.pgsty.com/
+
+cta:
+  title: Something to discuss?
+  text: The about page has my email and GitHub; questions about any post are welcome.
+  label: About me
+  url: about/
+  style: primary
